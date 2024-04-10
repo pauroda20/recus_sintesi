@@ -1,0 +1,246 @@
+Projecte e-vitamina
+PROJECTE INDIVIDUAL O EN PARELLES
+Versió: 0.1
+AQUEST DOCUMENT POT SER MODIFICAT!
+Introducció
+Implementarem el programa e-vitamina, un joc multijugador amb Python.
+És un joc de taula on hi ha un tauler quadrat de mida predefinida (10x10, 15x15, etc.) i cada jugador comença a un punt diferent aleatori del tauler. Tots els jugadors han d’anar al mateix punt final, també aleatori. La resta de caselles, inicialment ocultes sota el símbol #, amaguen diferents elements. Al final del joc guanya el jugador que arriba primer al punt final o l’últim a quedar-se sense vides.
+Al següent exemple de tauler hi ha 3 jugadors (1, 2, 3) i el punt final és F.
+        # # # # # # # # # # # # # # #
+        # # # # # # # # # # # # # # #
+        # # # # # # # # # # # # # # #
+        # # # # # # # # 1 # # # # # #
+        # # # # # # # # # # # # # # #
+        # # # # # # # # # # # # # # #
+        # # # # # # # # # # # # # # #
+        # # # # # # # # # # # # # # #
+        # # # # # # # # # 3 # # # # #
+        2 # # # # # # # # # # # # # #
+        # # # # # # # # # # # # # # #
+        # # F # # # # # # # # # # # #
+        # # # # # # # # # # # # # # #
+        # # # # # # # # # # # # # # #
+        # # # # # # # # # # # # # # #
+
+En el tauler cada jugador es pot moure amunt, avall, dreta i esquerra. No hi ha moviments en diagonal.
+Els jugadors es trobaran els següents elements:
+Casella buida (·): no passa res i s’acaba el torn del jugador.
+Mina (M): explota la mina i el jugador perd una vida. La casella on hi havia la mina es converteix en buida (·). El jugador no es mou de posició.
+Vitamina (V): dona una vida extra al jugador. La casella on hi havia la vitamina es converteix en buida (·). El jugador avança a la posició on hi havia la vitamina.
+Al final de cada torn es destapen algunes caselles.
+Funcionament del joc
+El joc comença demanant el nombre de jugadors, serà entre 2 i 6 jugadors:
+Introdueix el nombre de jugadors (2-6):
+Seguidament es demana el nivell de dificultat:
+Tria el nivell de dificultat de la partida:
+1 - Soc massa jove per morir
+2 - Ei, no tan brusc
+3 - Fes-me molt de mal
+4 - Ultraviolència
+5 - Això és un malson!
+Introdueix el número del nivell de dificultat (1-5):
+
+La quantitat de vides inicials, màximes, mida del tauler, percentatge de mines, vitamines i quantitat de cel·les que s’obren al final de cada torn estarà definit per la dificultat.
+Exemple (podeu fer els nivells com vulgueu)
+Nivell
+Vides inicials
+Vides màximes
+Percentatge de mines
+Percen. de vitamines
+Caselles vistes
+Mida tauler
+1
+5
+5
+10
+30
+5
+10
+2
+4
+5
+15
+25
+4
+12
+3
+3
+4
+20
+20
+3
+15
+4
+2
+3
+25
+15
+2
+20
+5
+1
+2
+30
+10
+1
+25
+
+
+Seguidament, es generarà el tauler i es començarà a jugar per torns.
+Cada jugador ha de fer un sol moviment amunt, avall, dreta o esquerra.
+Segons la posició on vagi a parar passarà el següent:
+Si hi ha un altre jugador, no es mou i perd el torn.
+Si arriba al marge del mapa, no es mou i perd el torn.
+Si va a parar sobre una mina, no es mou, perd una vida i s’acaba el torn.
+Si va a parar sobre una vitamina, es pot moure i guanya una vida, si no té el màxim de vides.
+Si s’introdueix un valor incorrecte com a moviment, es perd el torn.
+Si arriba al final (F), guanya la partida.
+Quan un jugador es queda sense vides, perd la partida i no pot jugar més.
+Si només queda un jugador actiu, guanya la partida per abandonament.
+
+Dades a definir
+Definició de variables (recomanades):
+Definició de cada nivell amb les variables que afecten.
+Vides inicials
+Vides màximes
+Percentatge mines
+Percentatge vitamines
+Caselles vistes
+Mida tauler
+Definició de les dades del jugador.
+Vides actuals
+Vides màximes
+Posició actual
+Definició del tauler que veu l’usuari.
+Definició del tauler que inclou tots els elements.
+Booleà que indica quan s’acaba la partida.
+
+
+Estructura del programa principal
+Definir les dades constants.
+Preguntar el nombre de jugadors. No deixar avançar fins que s’introdueixi un valor vàlid.
+Preguntar el nivell de dificultat. No deixar avançar fins que s’introdueixi un valor vàlid.
+Es crea el tauler amb les dades del nivell triat.
+S’ubica la posició final (F) al tauler.
+S’ubica la posició inicial de tots els jugadors.
+Començar la partida.
+Accions dels torns de cada jugador:
+Imprimir tauler.
+Demanar moviment al jugador.
+Comprovar els efectes del moviment.
+Comprovar si la partida continua.
+Imprimir el jugador que guanya.
+
+
+
+
+
+Recomanacions
+Fer servir constants, si cal, a part de les definides en aquest document, creant-les al principi del programa, de forma que el joc sigui fàcilment escalable.
+Utilitzar https://replit.com/ o l’extensió “Live Share” del Visual Studio Code per treballar col·laborativament dins i fora de l’aula.
+
+
+Indicacions
+Cal lliurar un fitxer anomenat e-vitamina_nom1_nom2.py degudament comentat i l’enllaç a un vídeo que demostri el funcionament de l’aplicatiu amb les vostres pròpies explicacions, on també podeu comentar quins problemes heu tingut, etc. Si ho creiem oportú podem demanar que ens feu una demostració/explicació de com heu implementat el codi.
+El codi s’ha de lliurar sense cap error ni advertència (warning).
+La pràctica es pot fer en parelles o individualment.
+Longitud aproximada del codi: 200 línies.
+
+
+
+Avaluació
+Puntuació:
+La nota mínima per fer mitjana és un 4. S’assoleix si l’estructura del programa principal segueix la indicada en aquest document, i el joc permet fer almenys una partida encara que determinades casuístiques produeixin error.
+Fins a 7 punts:
+El joc implementa tot el demanat fins ara i funciona perfectament.
+Fins a 8 punts:
+Heu implementat alguna funcionalitat extra al joc.
+Fins a 10 punts:
+El vídeo compleix amb els requisits demanats.
+La no presentació del vídeo suposarà una penalització de 2 punts. Per tant, tenint la màxima nota referent al codi, un 8, no entregar el vídeo suposarà obtenir una nota final de 6.
+El pes del projecte és del 30% de la nota de pràctiques.
+Qualsevol indici de còpia, ja sigui dels companys, d’Internet o ús d’IA, suposarà un 0 i una incidència.
+Exemple d’execució
+Introdueix el nombre de jugadors (2-6): 2
+Tria el nivell de dificultat de la partida:
+1 - Soc massa jove per morir
+2 - Ei, no tan brusc
+3 - Fes-me molt mal
+4 - Ultraviolència
+5 - Això és un malson!
+Introdueix el número del nivell de dificultat: 1
+
+        # # # # # # # # # #
+        # # # # # # # # # #
+        # # # # # # # # # #
+        # F # # # # # # # #
+        # # 1 # # # # # # #
+        # # # # # # # # # #
+        # # # # # # # # # #
+        # # # # # 2 # # # #
+        # # # # # # # # # #
+        # # # # # # # # # #
+
+Torn del Jugador 1, tens 5 vides.
+Jugador 1, fes un moviment (w/a/s/d): w
+Jugador 1, has caigut en una mina! Perds una vida.
+
+        # # # # # # # # M #
+        # # # # # # # # # #
+        # # # · # # # # # #
+        # F · # # # # # # #
+        # # 1 # # # # # # #
+        # # # # # # # # # #
+        # # # # # # # # # #
+        # # # V # 2 # · # #
+        # # # # # # # # # #
+        # # · # # # # # # #
+
+Torn del Jugador 2, tens 5 vides.
+Jugador 2, fes un moviment (w/a/s/d): a
+
+        # # # # # # # # M #
+        # # # # # # # # # #
+        # # # · # # # # # #
+        # F · # # # # # # #
+        V # 1 # V # # # # #
+        # # # # # # # # # #
+        # # # # # # # V # #
+        # # # V 2 · # · # M
+        # · # # # # # # # #
+        # # · # # # # # # #
+
+Torn del Jugador 1, tens 4 vides.
+Jugador 1, fes un moviment (w/a/s/d): w
+
+        # # # # · # # # M #
+        · # # # # # # # # #
+        # # # · # # # # # #
+        # F 1 # # # · V # #
+        V # · # V # # # # #
+        # # # # # # # # # #
+        # # # V # # # V # #
+        # # # V 2 · # · # M
+        # · # # # # # # # #
+        # # · # # # # # # #
+
+Torn del Jugador 2, tens 5 vides.
+Jugador 2, fes un moviment (w/a/s/d): a
+Jugador 2, has trobat una vitamina! Guanyes una vida.
+
+        # # # # · # # # M #
+        · # # # # # # # # #
+        # # # · # # # # # #
+        # F 1 # # # · V # #
+        V # · # V M # # # #
+        # # # # · # # # # #
+        # # # V # # # V # #
+        # # # 2 · · # · # M
+        # · # # # # # # # V
+        # # · # # # # V · #
+
+Torn del Jugador 1, tens 4 vides.
+Jugador 1, fes un moviment (w/a/s/d): a
+El jugador 1 ha guanyat!
+
+
